@@ -1,0 +1,93 @@
+I=imread('leena 3.jpg');
+subplot(2,3,1);
+imshow(I);
+title('Original Image');
+I1=rgb2gray(I);
+subplot(2,3,2);
+imshow(I1)
+title('Gray Image');
+
+N1 = imnoise(I1,'gaussian');
+subplot(2,3,3);
+imshow(N1);
+title('Gaussian Noise');
+[peaksnr, snr] = psnr(N1, I1);
+err = immse(N1, I1);
+fprintf('\n The Peak-SNR value for Gaussian Noise is  %0.4f', peaksnr);
+fprintf('\n The SNR value for Gaussian Noise is %0.4f', snr);
+fprintf('\n The mean-squared error for Gaussian Noise is %0.4f\n', err);
+
+N2 = imnoise(I1,'poisson');
+subplot(2,3,4);
+imshow(N2)
+title('Poisson Noise');
+[peaksnr, snr] = psnr(N2, I1);
+err = immse(N2, I1);
+fprintf('\n The Peak-SNR value for Poisson Noise is  %0.4f', peaksnr);
+fprintf('\n The SNR value for Poisson Noise is %0.4f', snr);
+fprintf('\n The mean-squared error for Poisson Noise is %0.4f\n', err);
+
+
+N3 = imnoise(I1,'salt & pepper');
+subplot(2,3,5);
+imshow(N3)
+title('Salt & Pepper Noise');
+[peaksnr, snr] = psnr(N3, I1);
+err = immse(N3, I1);
+fprintf('\n The Peak-SNR value for Salt & Pepper Noise is  %0.4f', peaksnr);
+fprintf('\n The SNR value for Salt & Pepper Noise is %0.4f', snr);
+fprintf('\n The mean-squared error for Salt & Pepper Noise is %0.4f\n', err);
+
+N4 = imnoise(I1,'speckle');
+subplot(2,3,6);
+imshow(N4)
+title('Speckle Noise');
+[peaksnr, snr] = psnr(N4, I1);
+err = immse(N4, I1);
+fprintf('\n The Peak-SNR value for Speckle Noise is  %0.4f', peaksnr);
+fprintf('\n The SNR value for Speckle Noise is %0.4f', snr);
+fprintf('\n The mean-squared error for Speckle Noise is %0.4f', err);
+
+
+J1 = medfilt2(N1,[3 3]);
+subplot (2,2,1);
+imshow (J1);
+title('Median Filter on Gaussian Noise');
+[peaksnr, snr] = psnr(J1, I1);
+err = immse(J1, I1);
+fprintf('\n The Peak-SNR value for Gaussian Noise After Median Filter is  %0.4f', peaksnr);
+fprintf('\n The SNR value for Gaussian Noise After Median Filter is %0.4f', snr);
+fprintf('\n The mean-squared error for Gaussian Noise After Median Filter is %0.4f\n', err);
+
+
+J2 = medfilt2(N2,[3 3]);
+subplot (2,2,2);
+imshow (J2);
+title('Median Filter on Poisson Noise');
+[peaksnr, snr] = psnr(J2, I1);
+err = immse(J2, I1);
+fprintf('\n The Peak-SNR value for Poisson Noise After Median Filter is  %0.4f', peaksnr);
+fprintf('\n The SNR value for Poisson Noise After Median Filter is %0.4f', snr);
+fprintf('\n The mean-squared error for Poisson Noise After Median Filter is %0.4f\n', err);
+
+
+J3 = medfilt2(N3,[3 3]);
+subplot (2,2,3);
+imshow (J3);
+title('Median Filter on Salt & Pepper Noise');
+[peaksnr, snr] = psnr(J3, I1);
+err = immse(J3, I1);
+fprintf('\n The Peak-SNR value for Salt & Pepper Noise After Median Filter is  %0.4f', peaksnr);
+fprintf('\n The SNR value for Salt & Pepper Noise After Median Filter is %0.4f', snr);
+fprintf('\n The mean-squared error for Salt & Pepper Noise After Median Filter is %0.4f\n', err);
+
+J4 = medfilt2(N3,[3 3]);
+subplot (2,2,4);
+imshow (J4);
+title('Median Filter on Speckle Noise');
+[peaksnr, snr] = psnr(J4, I1);
+err = immse(J4, I1);
+fprintf('\n The Peak-SNR value for Speckle Noise After Median Filter is  %0.4f', peaksnr);
+fprintf('\n The SNR value for Speckle Noise After Median Filter is %0.4f', snr);
+fprintf('\n The mean-squared error for Speckle Noise After Median Filter is %0.4f', err);
+

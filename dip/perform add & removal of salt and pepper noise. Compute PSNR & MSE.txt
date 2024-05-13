@@ -1,0 +1,31 @@
+I=imread('leena 3.jpg'); 
+subplot(2,2,1);
+imshow(I)
+title('original image');
+
+K = rgb2gray(I); 
+subplot(2,2,2);
+imshow(K);
+title('Gray scale image');
+
+J= imnoise(K ,'salt & pepper',0.05);
+subplot(2,2,3);
+imshow(J);
+title('Noisy Image');
+
+[peaksnr, snr] = psnr(J, K);
+err = immse(J, K);
+fprintf('\n The Peak-SNR value of Noisy Image is %0.4f', peaksnr);
+fprintf('\n The SNR value Noisy Image is %0.4f', snr);
+fprintf('\n The mean-squared error Noisy Image is %0.4f\n', err);
+
+f2= medfilt2(J,[3,3]); 
+subplot(2,2,4);
+imshow(f2);
+title('Median filter');
+
+[peaksnr, snr] = psnr(f2, K);
+err = immse(f2, K);
+fprintf('\n The Peak-SNR value after Median filter is %0.4f', peaksnr);
+fprintf('\n The SNR value after Median filter  is %0.4f', snr);
+fprintf('\n The mean-squared error after Median filter is %0.4f', err);

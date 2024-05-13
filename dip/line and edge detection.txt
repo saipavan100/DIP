@@ -1,0 +1,60 @@
+Program 1
+
+I = rgb2gray(imread('coin.jpg')); 
+subplot(2, 2, 1), 
+imshow(I); 
+title('Gray Scale Image'); 
+ 
+% Sobel Edge Detection 
+J = edge(I, 'Sobel'); 
+subplot(2, 2, 2), 
+imshow(J); 
+title('Sobel'); 
+ 
+% Prewitt Edge detection 
+K = edge(I, 'Prewitt'); 
+subplot(2, 2, 3), 
+imshow(K); 
+title('Prewitt'); 
+ 
+% Robert Edge Detection 
+L = edge(I, 'Roberts'); 
+subplot(2, 2, 4), 
+imshow(L); 
+title('Robert'); 
+
+
+
+
+Program 2
+
+Sobel k=imread('coin.jpg');
+k=rgb2gray(k);
+k1=double(k);
+p_msk=[-1 0 1; -2 0 2; -1 0 1];
+kx=conv2(k1, p_msk, 'same');
+ky=conv2(k1, p_msk', 'same');
+
+subplot (2,2,1);
+imshow(k);
+subplot (2,2,2);
+imshow(kx);
+subplot (2,2,3);
+imshow(ky);
+
+
+Prewitt
+
+k=imread('coin.jpg');
+k=rgb2gray(k);
+k1=double(k);
+p_msk=[-1 0 1; -1 0 1; -1 0 1];
+kx=conv2(k1, p_msk, 'same');
+ky=conv2(k1, p_msk', 'same');
+
+subplot (2,2,1);
+imshow(k);
+subplot (2,2,2);
+imshow(kx);
+subplot (2,2,3);
+imshow(ky);

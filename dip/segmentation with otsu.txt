@@ -1,0 +1,25 @@
+mage=(imread("coins.jpg"));
+figure(1);
+imshow(image);
+title("Original image.");
+[counts,x] = imhist(image,16);
+thresh= otsuthresh(counts);
+otsu=imbinarize(image,thresh);
+figure(2);
+imshow(otsu);
+title("Image segmentation with Otsu thresholding.");
+
+
+
+I = imread('cam1.tif');
+imshow(I)
+title('Original Image');
+mask = false(size(I)); 
+mask(170,70) = true;
+W = graydiffweight(I, mask, 'GrayDifferenceCutoff', 25);
+thresh = 0.01;
+[BW, D] = imsegfmm(W, mask, thresh);
+figure;
+imshow(BW);
+title('Segmented Image');
+

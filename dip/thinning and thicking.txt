@@ -1,0 +1,18 @@
+% Read an input binary image
+binary_image = imread('binary_image.png');
+binary_image = imbinarize(rgb2gray(binary_image)); % Convert to binary if not already binary
+
+% Structuring element for morphological operations
+se = strel('disk', 1); % Adjust the size and shape of the structuring element as needed
+
+% Thinning operation
+thinned_image = bwmorph(binary_image, 'thin', Inf);
+
+% Thickening operation
+thickened_image = imdilate(binary_image, se);
+
+% Display the original and processed images
+figure;
+subplot(1, 3, 1); imshow(binary_image); title('Original Binary Image');
+subplot(1, 3, 2); imshow(thinned_image); title('Thinned Image');
+subplot(1, 3, 3); imshow(thickened_image); title('Thickened Image');

@@ -1,0 +1,45 @@
+Laplacian filter   (Sharpening)
+
+Program 1
+
+i=imread('leena 1.png');
+subplot(2,2,1); 
+imshow(i);
+title('Original Image');
+g=rgb2gray(i);
+subplot(2,2,2); 
+imshow(g); 
+title('Gray Image');
+f=fspecial('laplacian',0.5);
+im=imfilter(g,f);
+subplot(2,2,3); 
+imshow(im); 
+title('Laplacian ');
+
+
+
+Program 2
+
+k=imread('coin.jpg');
+ 
+k1=rgb2gray(k);
+ 
+k2=double(k1);
+ 
+Laplacian=[0 1 0; 1 -4 1; 0 1 0];
+ 
+k3=conv2(k2, Laplacian, 'same');
+ 
+Laplacian=[0 -1 0; -1 4 -1; 0 -1 0];
+ 
+k3=conv2(k2, Laplacian, 'same');
+ 
+subplot(2,2,1);
+imshow(k);
+subplot(2,2,2);
+imshow(k1);
+subplot(2,2,3);
+imshow(k3);
+subplot(2,2,4);
+
+

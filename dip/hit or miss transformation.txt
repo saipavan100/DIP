@@ -1,0 +1,23 @@
+% Read the binary image
+image = imread('D:\pictures\Image.tif');
+binaryImage = im2bw(image);
+
+% Read the structuring element image
+structuringElementImage = imread('D:\pictures\Se.tif')
+structuringElementBinary = im2bw(structuringElementImage);
+
+% Define the hit and miss elements
+hitElement = structuringElementBinary;
+missElement = ~structuringElementBinary;
+
+% Perform hit or miss transformation
+hitOrMissImage = bwhitmiss(binaryImage, hitElement, missElement);
+
+% Display the original and hit or miss transformed images
+subplot(1, 2, 1);
+imshow(binaryImage);
+title('Original Binary Image');
+
+subplot(1, 2, 2);
+imshow(hitOrMissImage);
+title('Hit or Miss Transformed Image');
